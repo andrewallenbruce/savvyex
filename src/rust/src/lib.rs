@@ -50,29 +50,35 @@ fn int_times_int(x: IntegerSexp, y: i32) -> savvy::Result<savvy::Sexp> {
 }
 
 #[savvy]
-struct Person {
-    pub name: String,
+struct Patient {
+    pub first_name: String,
+    pub middle_name: String,
+    pub last_name: String,
 }
 
 /// A person with a name
 ///
 /// @export
 #[savvy]
-impl Person {
+impl Patient {
     fn new() -> Self {
         Self {
-            name: "".to_string(),
+            first_name: "".to_string(),
+            middle_name: "".to_string(),
+            last_name: "".to_string(),
         }
     }
 
-    fn set_name(&mut self, name: &str) -> savvy::Result<()> {
-        self.name = name.to_string();
+    fn set_name(&mut self, first_name: &str, middle_name: &str, last_name: &str) -> savvy::Result<()> {
+        self.first_name = first_name.to_string();
+        self.middle_name = middle_name.to_string();
+        self.last_name = last_name.to_string();
         Ok(())
     }
 
     fn name(&self) -> savvy::Result<savvy::Sexp> {
         let mut out = OwnedStringSexp::new(1)?;
-        out.set_elt(0, &self.name)?;
+        out.set_elt(0, &self.first_name)?;
         Ok(out.into())
     }
 
@@ -98,7 +104,8 @@ mod test1 {
 // Tests marked under `#[cfg(feature = "savvy-test")]` are run by `savvy-cli test`, which
 // executes the Rust code on a real R session so that you can use R things for
 // testing.
-#[cfg(feature = "savvy-test")]
+// #[cfg(feature = "savvy-test")]
+#[cfg(test)]
 mod test1 {
     // The return type must be `savvy::Result<()>`
     #[test]
@@ -114,4 +121,11 @@ mod test1 {
 
         Ok(())
     }
+}
+
+/// @export
+#[savvy]
+fn hello() -> savvy::Result<()> {
+    savvy::r_println!("Hello world!");
+    Ok(())
 }

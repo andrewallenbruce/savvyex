@@ -37,6 +37,11 @@ NULL
   stop(class, " cannot be modified", call. = FALSE)
 }
 
+#' @export
+`hello` <- function() {
+  invisible(.Call(savvy_hello__impl))
+}
+
 #' Multiply Input By Another Input
 #'
 #' @param x An integer vector.
@@ -56,49 +61,49 @@ NULL
   .Call(savvy_to_upper__impl, `x`)
 }
 
-### wrapper functions for Person
+### wrapper functions for Patient
 
-`Person_name` <- function(self) {
+`Patient_name` <- function(self) {
   function() {
-    .Call(savvy_Person_name__impl, `self`)
+    .Call(savvy_Patient_name__impl, `self`)
   }
 }
 
-`Person_set_name` <- function(self) {
-  function(`name`) {
-    invisible(.Call(savvy_Person_set_name__impl, `self`, `name`))
+`Patient_set_name` <- function(self) {
+  function(`first_name`, `middle_name`, `last_name`) {
+    invisible(.Call(savvy_Patient_set_name__impl, `self`, `first_name`, `middle_name`, `last_name`))
   }
 }
 
-`.savvy_wrap_Person` <- function(ptr) {
+`.savvy_wrap_Patient` <- function(ptr) {
   e <- new.env(parent = emptyenv())
   e$.ptr <- ptr
-  e$`name` <- `Person_name`(ptr)
-  e$`set_name` <- `Person_set_name`(ptr)
+  e$`name` <- `Patient_name`(ptr)
+  e$`set_name` <- `Patient_set_name`(ptr)
 
-  class(e) <- c("savvyex::Person", "Person", "savvy_savvyex__sealed")
+  class(e) <- c("savvyex::Patient", "Patient", "savvy_savvyex__sealed")
   e
 }
 
 
 
-`Person` <- new.env(parent = emptyenv())
+`Patient` <- new.env(parent = emptyenv())
 
-### associated functions for Person
+### associated functions for Patient
 
-`Person`$`associated_function` <- function() {
-  .Call(savvy_Person_associated_function__impl)
+`Patient`$`associated_function` <- function() {
+  .Call(savvy_Patient_associated_function__impl)
 }
 
-`Person`$`new` <- function() {
-  .savvy_wrap_Person(.Call(savvy_Person_new__impl))
+`Patient`$`new` <- function() {
+  .savvy_wrap_Patient(.Call(savvy_Patient_new__impl))
 }
 
 
-class(`Person`) <- c("savvyex::Person__bundle", "savvy_savvyex__sealed")
+class(`Patient`) <- c("savvyex::Patient__bundle", "savvy_savvyex__sealed")
 
 #' @export
-`print.savvyex::Person__bundle` <- function(x, ...) {
-  cat('savvyex::Person\n')
+`print.savvyex::Patient__bundle` <- function(x, ...) {
+  cat('savvyex::Patient\n')
 }
 

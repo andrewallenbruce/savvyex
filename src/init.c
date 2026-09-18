@@ -39,6 +39,11 @@ SEXP handle_result(SEXP res_) {
     return (SEXP)res;
 }
 
+SEXP savvy_hello__impl(void) {
+    SEXP res = savvy_hello__ffi();
+    return handle_result(res);
+}
+
 SEXP savvy_int_times_int__impl(SEXP c_arg__x, SEXP c_arg__y) {
     SEXP res = savvy_int_times_int__ffi(c_arg__x, c_arg__y);
     return handle_result(res);
@@ -49,34 +54,35 @@ SEXP savvy_to_upper__impl(SEXP c_arg__x) {
     return handle_result(res);
 }
 
-SEXP savvy_Person_associated_function__impl(void) {
-    SEXP res = savvy_Person_associated_function__ffi();
+SEXP savvy_Patient_associated_function__impl(void) {
+    SEXP res = savvy_Patient_associated_function__ffi();
     return handle_result(res);
 }
 
-SEXP savvy_Person_name__impl(SEXP self__) {
-    SEXP res = savvy_Person_name__ffi(self__);
+SEXP savvy_Patient_name__impl(SEXP self__) {
+    SEXP res = savvy_Patient_name__ffi(self__);
     return handle_result(res);
 }
 
-SEXP savvy_Person_new__impl(void) {
-    SEXP res = savvy_Person_new__ffi();
+SEXP savvy_Patient_new__impl(void) {
+    SEXP res = savvy_Patient_new__ffi();
     return handle_result(res);
 }
 
-SEXP savvy_Person_set_name__impl(SEXP self__, SEXP c_arg__name) {
-    SEXP res = savvy_Person_set_name__ffi(self__, c_arg__name);
+SEXP savvy_Patient_set_name__impl(SEXP self__, SEXP c_arg__first_name, SEXP c_arg__middle_name, SEXP c_arg__last_name) {
+    SEXP res = savvy_Patient_set_name__ffi(self__, c_arg__first_name, c_arg__middle_name, c_arg__last_name);
     return handle_result(res);
 }
 
 
 static const R_CallMethodDef CallEntries[] = {
+    {"savvy_hello__impl", (DL_FUNC) &savvy_hello__impl, 0},
     {"savvy_int_times_int__impl", (DL_FUNC) &savvy_int_times_int__impl, 2},
     {"savvy_to_upper__impl", (DL_FUNC) &savvy_to_upper__impl, 1},
-    {"savvy_Person_associated_function__impl", (DL_FUNC) &savvy_Person_associated_function__impl, 0},
-    {"savvy_Person_name__impl", (DL_FUNC) &savvy_Person_name__impl, 1},
-    {"savvy_Person_new__impl", (DL_FUNC) &savvy_Person_new__impl, 0},
-    {"savvy_Person_set_name__impl", (DL_FUNC) &savvy_Person_set_name__impl, 2},
+    {"savvy_Patient_associated_function__impl", (DL_FUNC) &savvy_Patient_associated_function__impl, 0},
+    {"savvy_Patient_name__impl", (DL_FUNC) &savvy_Patient_name__impl, 1},
+    {"savvy_Patient_new__impl", (DL_FUNC) &savvy_Patient_new__impl, 0},
+    {"savvy_Patient_set_name__impl", (DL_FUNC) &savvy_Patient_set_name__impl, 4},
     {NULL, NULL, 0}
 };
 
