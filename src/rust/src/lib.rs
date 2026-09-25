@@ -122,10 +122,3 @@ mod test1 {
         Ok(())
     }
 }
-
-/// @export
-#[savvy]
-fn hello() -> savvy::Result<()> {
-    savvy::r_println!("Hello world!");
-    Ok(())
-}

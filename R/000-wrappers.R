@@ -37,11 +37,6 @@ NULL
   stop(class, " cannot be modified", call. = FALSE)
 }
 
-#' @export
-`hello` <- function() {
-  invisible(.Call(savvy_hello__impl))
-}
-
 #' Multiply Input By Another Input
 #'
 #' @param x An integer vector.

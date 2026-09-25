@@ -1,4 +1,3 @@
-SEXP savvy_hello__ffi(void);
 SEXP savvy_int_times_int__ffi(SEXP c_arg__x, SEXP c_arg__y);
 SEXP savvy_to_upper__ffi(SEXP c_arg__x);
 

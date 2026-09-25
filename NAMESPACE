@@ -3,7 +3,6 @@
 S3method("$<-",savvy_savvyex__sealed)
 S3method("[[<-",savvy_savvyex__sealed)
 S3method(print,"savvyex::Patient__bundle")
-export(hello)
 export(int_times_int)
 export(to_upper)
 useDynLib(savvyex, .registration = TRUE)

@@ -39,11 +39,6 @@ SEXP handle_result(SEXP res_) {
     return (SEXP)res;
 }
 
-SEXP savvy_hello__impl(void) {
-    SEXP res = savvy_hello__ffi();
-    return handle_result(res);
-}
-
 SEXP savvy_int_times_int__impl(SEXP c_arg__x, SEXP c_arg__y) {
     SEXP res = savvy_int_times_int__ffi(c_arg__x, c_arg__y);
     return handle_result(res);
@@ -76,7 +71,6 @@ SEXP savvy_Patient_set_name__impl(SEXP self__, SEXP c_arg__first_name, SEXP c_ar
 
 
 static const R_CallMethodDef CallEntries[] = {
-    {"savvy_hello__impl", (DL_FUNC) &savvy_hello__impl, 0},
     {"savvy_int_times_int__impl", (DL_FUNC) &savvy_int_times_int__impl, 2},
     {"savvy_to_upper__impl", (DL_FUNC) &savvy_to_upper__impl, 1},
     {"savvy_Patient_associated_function__impl", (DL_FUNC) &savvy_Patient_associated_function__impl, 0},
