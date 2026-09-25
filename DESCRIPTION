@@ -9,3 +9,5 @@ Config/roxygen2/version: 8.1.0.9000
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 SystemRequirements: Cargo (Rust's package manager), rustc
+URL: https://github.com/andrewallenbruce/savvyex
+BugReports: https://github.com/andrewallenbruce/savvyex/issues
