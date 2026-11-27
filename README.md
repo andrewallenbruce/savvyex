@@ -26,7 +26,8 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(savvyex)
-# x <- Patient$new()
-# x$set_name("Andrew", "Allen", "Bruce")
-# x$name()
+x <- savvyex:::Patient$new()
+x$set_name("Andrew", "Allen", "Bruce")
+x$name()
+#> [1] "Andrew"
 ```

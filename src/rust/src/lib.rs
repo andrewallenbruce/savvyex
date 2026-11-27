@@ -49,6 +49,7 @@ fn int_times_int(x: IntegerSexp, y: i32) -> savvy::Result<savvy::Sexp> {
     Ok(out.into())
 }
 
+/// @export
 #[savvy]
 struct Patient {
     pub first_name: String,
@@ -94,8 +95,8 @@ impl Patient {
 #[cfg(test)]
 mod test1 {
     #[test]
-    fn test_person() {
-        let mut p = super::Person::new();
+    fn test_patient() {
+        let mut p = super::Patient::new();
         p.set_name("foo").expect("set_name() must succeed");
         assert_eq!(&p.name, "foo");
     }
@@ -106,17 +107,17 @@ mod test1 {
 // testing.
 // #[cfg(feature = "savvy-test")]
 #[cfg(test)]
-mod test1 {
+mod test2 {
     // The return type must be `savvy::Result<()>`
     #[test]
     fn test_to_upper() -> savvy::Result<()> {
-        // You can create a non-owned version of input by `.as_read_only()`
+        You can create a non-owned version of input by `.as_read_only()`
         let x = savvy::OwnedStringSexp::try_from_slice(["foo", "bar"])?.as_read_only();
 
         let result = super::to_upper(x)?;
 
-        // This function compares an SEXP with the result of R code specified in
-        // the second argument.
+        This function compares an SEXP with the result of R code specified in
+        the second argument.
         savvy::assert_eq_r_code(result, r#"c("FOO", "BAR")"#);
 
         Ok(())
